@@ -1,0 +1,67 @@
+﻿@using WebBanDongHo.Models.Entities;
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+@{
+    IEnumerable<SanPhamKhuyenMai> listSPKM = (IEnumerable<SanPhamKhuyenMai>)ViewBag.listSPKM;
+    IEnumerable<SanPham> listSPM = (IEnumerable<SanPham>)ViewBag.SanPhamMoi;
+    ChuongTrinhKhuyenMai CTKM = (ChuongTrinhKhuyenMai)ViewBag.CTKM;
+}
+@Html.Action("BanerPartial", "Home")
+<!-- top Products -->
+<div class="ads-grid py-sm-5 py-4">
+    <div class="container py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span>O</span>ur
+            <span>N</span>ew
+            <span>P</span>roducts
+        </h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <!-- product left -->
+            <div class="agileinfo-ads-display col-lg-12">
+                <div class="wrapper">
+                    <!-- first section -->
+                    @if (listSPKM != null)
+                    {
+                        @Html.Partial("~/Views/Home/HienThiSanPhamKhuyenMaiPartial.cshtml", listSPKM)
+                    }
+
+                    <!-- //first section -->
+                    <!-- second section -->
+                    @if (listSPM != null)
+                    {
+                        @Html.Partial("~/Views/Home/HienThiSanPhamMoiPartial.cshtml", listSPM)
+                    }
+
+
+                    <!-- //second section -->
+                    <!-- third section -->
+                    @if (CTKM != null)
+                    {
+                        <div class="product-sec1 product-sec2 px-sm-5 px-3">
+                            <div class="row">
+                                <div class="col-md-8 bg-right-nut">
+                                    <img src="@Url.Content("~"+CTKM.Anh)" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @Html.Partial("~/Views/Home/HienThiSanPhamTheoLoaiPartial.cshtml")
+                    <!-- //third section -->
+                    <!-- fourth section -->
+                    <!-- //fourth section -->
+                </div>
+            </div>
+            <!-- //product left -->
+            <!-- product right -->
+        </div>
+    </div>
+</div>
+<!-- //top products -->
+<!-- middle section -->
+<!-- middle section -->

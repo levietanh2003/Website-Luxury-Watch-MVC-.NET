@@ -1,0 +1,122 @@
+﻿@using PagedList.Mvc
+@using WebBanDongHo.Models.Entities
+@model PagedList.IPagedList<KhachHang>
+@{
+    ViewBag.Title = "DanhSachKhachHang";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Quản lý khách hàng</h6>
+    </div>
+    <div class="col-md-4">
+        <br />
+        @using (Html.BeginForm("DanhSachKhachHang", "QuanLyKhachHang"))
+        {
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="@ViewBag.search" name="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            @*<form>
+                    <input type="text" class="form-control" value="@ViewBag.search" name="search" />
+                    <input type="submit" class="btn btn-danger" value="Tìm kiếm" />
+                    <a href="@Url.Action("ThemLoaiSanPham", "QuanLyLoaiSanPham")" type="submit" class="btn btn-success">Thêm mới</a>
+                </form>*@
+        }
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã khách hàng</th>
+                        <th>Họ và tên</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Tài khoản</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="row_@item.Makh">
+                        <td>@item.Makh</td>
+                        <td>@item.TenKH</td>
+                        <td>@item.DiaChi</td>
+                        <td>@item.Email</td>
+                        <td>@item.SoDienThoai</td>
+                        @if (item.MaTV == null)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@item.ThanhVien.TaiKhoan</td>
+                        }
+
+                        <td>
+                            <a href="@Url.Action("SuaKhachHang", "QuanLyKhachHang", new { @Makh = item.Makh })">Sửa</a>
+                            |
+                            @Ajax.ActionLink("Xóa", "XoaKhachHang", new { @Makh = item.Makh }, new AjaxOptions
+                            {
+                           Confirm = "Bạn có muốn xóa bản ghi này?!",
+                           OnComplete = "$('#row_" + @item.Makh + "').remove()",
+                           OnSuccess = "location.reload()"
+                       })
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div>
+            @Html.PagedListPager(Model, Page => Url.Action("DanhSachKhachHang", new
+       {
+           page = Page,
+           @search = @ViewBag.search
+       }), new PagedListRenderOptions
+       {
+           LiElementClasses = new string[] { "item" },
+
+       })
+        </div>
+    </div>
+
+</div>
+<style>
+    .item {
+        height: 30px;
+        width: 30px;
+        padding-top: 2px;
+        border: 0.5px solid pink;
+        text-align: center;
+        border-radius: 3px;
+    }
+
+        .item a {
+            color: black;
+            text-decoration: none;
+        }
+
+    .pagination .active {
+        background-color: #337AB7;
+        color: white;
+    }
+
+    .item:hover {
+        background-color: #EEEEEE;
+    }
+</style>
+

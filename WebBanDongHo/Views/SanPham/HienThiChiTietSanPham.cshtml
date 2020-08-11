@@ -1,0 +1,65 @@
+﻿@using WebBanDongHo.Models.Entities
+@model SanPham
+@{
+    ViewBag.Title = "HienThiChiTietSanPham";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+@{
+    IEnumerable<AnhSanPham> LASP = (IEnumerable<AnhSanPham>)ViewBag.AnhSP;
+    int y = LASP.Count();
+}
+<div class="banner-bootom-w3-agileits py-5">
+    <div class="container py-xl-4 py-lg-2">
+        <!-- //tittle heading -->
+        <div class="row">
+            <div class="col-lg-5 col-md-8 single-right-left ">
+                <div class="grid images_3_of_2">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            @foreach (var item in LASP)
+                            {
+                                <li data-thumb="@Url.Content("~"+item.TenAnhSP)">
+                                    <div class="thumb-image">
+                                        <img src="@Url.Content("~"+item.TenAnhSP)" data-imagezoom="true" class="img-fluid" alt="">
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 single-right-left simpleCart_shelfItem">
+                <h3 class="mb-3">@Model.TenSP</h3>
+                <p class="mb-3">
+                    @if (ViewBag.GiaKhuyenMai == null)
+                    {
+                        <span class="item_price">@Model.DonGia.Value.ToString("#,##")</span>
+                    }
+                    else
+                    {
+                        decimal giakhuyenmai = (decimal)ViewBag.GiaKhuyenMai;
+                        <span class="item_price">@giakhuyenmai.ToString("#,##")</span>
+                        <del class="mx-2 font-weight-light">@Model.DonGia.Value.ToString("#,##")</del>
+                    }
+
+                </p>
+                <div class="product-single-w3l">
+                    @Html.Raw(Model.ThongSo)
+                </div>
+                <div class="occasion-cart">
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @MaSP = Model.MaSP, @strUrl = Request.Url.ToString()})" class="hiengiohang"><input type="button" value="Add to cart" class="button btn"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-xl-4 py-lg-2">
+        <h2>Mô tả sản phẩm</h2>
+        <hr/>
+        @Html.Raw(Model.MoTa)
+    </div>
+</div>
+

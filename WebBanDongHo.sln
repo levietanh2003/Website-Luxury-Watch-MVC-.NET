@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBanDongHo", "WebBanDongHo\WebBanDongHo.csproj", "{0F146A29-0684-48A3-9ACD-974206BEE1FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F146A29-0684-48A3-9ACD-974206BEE1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F146A29-0684-48A3-9ACD-974206BEE1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F146A29-0684-48A3-9ACD-974206BEE1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F146A29-0684-48A3-9ACD-974206BEE1FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A1485F6-269C-4DCA-B20F-013A89BB0A8D}
+	EndGlobalSection
+EndGlobal
