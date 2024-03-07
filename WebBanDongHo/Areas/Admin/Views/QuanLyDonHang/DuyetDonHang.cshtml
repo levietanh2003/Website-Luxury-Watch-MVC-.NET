@@ -46,7 +46,7 @@
                     @foreach (var item in listChiTietDH)
                     {
                         <tr>
-                            <td>@item.MaSP</td>
+                            <td>@item.SanPham.TenSP</td>
                             <td>@item.SoLuong</td>
                             @{ decimal thanhtien = (decimal)(@item.DonGia * @item.SoLuong);}
                             <td>@item.DonGia</td>

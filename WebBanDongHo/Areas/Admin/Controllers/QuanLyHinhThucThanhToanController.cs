@@ -7,7 +7,7 @@ using WebBanDongHo.Models.Entities;
 using PagedList;
 namespace WebBanDongHo.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "QUANTRI")]
+    [Authorize(Roles = "Admin")]
     public class QuanLyHinhThucThanhToanController : AdminBaseController
     {
         WebBanDongHoDbContext db = new WebBanDongHoDbContext();

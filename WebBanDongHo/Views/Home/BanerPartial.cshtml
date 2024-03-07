@@ -2,13 +2,23 @@
 @model IEnumerable<Slider>
 @if (Model != null)
 {
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            @for (int i = 1; i <= Model.Count(); i++)
+            @if (Model != null && Model.Any())
             {
-                <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
+                /*@for (int i = 1; i <= Model.Count(); i++)
+                {
+                    <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
+                }*/
             }
+            else
+            {
+                <p>No sliders available.</p>
+            }
+
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">

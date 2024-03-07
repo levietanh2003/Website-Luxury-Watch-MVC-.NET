@@ -193,10 +193,10 @@ namespace WebBanDongHo.Controllers
             }
             db.SaveChanges();
             Session["gioHang"] = null;
-            GuiEmail("Xác nhận đơn hàng của hệ thống", KH.Email, "hoanganhnguyenkfe99@gmail.com", "Anhhoang@123", "Đơn hàng của bạn đang được xử lý!");
+            //GuiEmail("Xác nhận đơn hàng của hệ thống", KH.Email, "hoanganhnguyenkfe99@gmail.com", "Anhhoang@123", "Đơn hàng của bạn đang được xử lý!");
             return RedirectToAction("HienThiGioHang");
         }
-        public void GuiEmail(string title, string toEmail, string fromEmail, string passWord, string content)
+        /*public void GuiEmail(string title, string toEmail, string fromEmail, string passWord, string content)
         {
             //Gọi Email
             MailMessage mail = new MailMessage();
@@ -211,6 +211,6 @@ namespace WebBanDongHo.Controllers
             smtp.Credentials = new System.Net.NetworkCredential(fromEmail, passWord);//Tài khoản và mật khẩu người gửi
             smtp.EnableSsl = true;//Kích hoạt giao tiếp an toàn SSL
             smtp.Send(mail);//Gửi email
-        }
+        }*/
     }
 }

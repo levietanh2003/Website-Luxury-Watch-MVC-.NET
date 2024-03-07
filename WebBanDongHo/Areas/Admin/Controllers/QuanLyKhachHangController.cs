@@ -8,7 +8,7 @@ using WebBanDongHo.Models.Entities;
 
 namespace WebBanDongHo.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "QUANTRI")]
+    [Authorize(Roles = "Admin")]
     public class QuanLyKhachHangController : AdminBaseController
     {
         WebBanDongHoDbContext db = new WebBanDongHoDbContext();

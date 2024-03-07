@@ -34,6 +34,7 @@
                 <thead>
                     <tr>
                         <th>Mã đơn đặt hàng</th>
+                        <th>San pham</th>
                         <th>Khách hàng</th>
                         <th>Ngày đặt</th>
                         <th>Địa chỉ nhận hàng</th>
@@ -47,6 +48,12 @@
                     {
                         <tr id="row_@item.MaDDH">
                             <td>@item.MaDDH</td>
+                            <td>
+                                @foreach (var chiTiet in item.ChiTietDonDatHangs)
+                                {
+                                    @Html.DisplayFor(modelItem => chiTiet.SanPham.TenSP) <br />
+                                }
+                            </td>
                             <td>@item.MAKH</td>
                             <td>@item.NgayDat.Value.ToString("dd/MM/yyyy")</td>
                             <td>@item.DiaChiNhanHang</td>

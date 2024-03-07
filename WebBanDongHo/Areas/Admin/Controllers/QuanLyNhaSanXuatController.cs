@@ -8,7 +8,7 @@ using PagedList;
 
 namespace WebBanDongHo.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "QUANTRI")]
+    [Authorize(Roles = "Admin")]
     public class QuanLyNhaSanXuatController : AdminBaseController
     {
         WebBanDongHoDbContext db = new WebBanDongHoDbContext();
