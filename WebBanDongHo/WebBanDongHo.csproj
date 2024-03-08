@@ -500,6 +500,8 @@
     <Content Include="Areas\Admin\Content\ckeditor\samples\old\uilanguages.html" />
     <Content Include="Areas\Admin\Content\ckeditor\samples\old\wysiwygarea\fullpage.html" />
     <Content Include="Areas\Admin\Content\ckeditor\samples\old\xhtmlstyle.html" />
+    <Content Include="Areas\Admin\Content\ckeditor\samples\send1.html" />
+    <Content Include="Areas\Admin\Content\ckeditor\samples\send2.html" />
     <Content Include="Areas\Admin\Content\ckeditor\samples\toolbarconfigurator\css\fontello.css" />
     <Content Include="Areas\Admin\Content\ckeditor\samples\toolbarconfigurator\font\fontello.svg" />
     <Content Include="Areas\Admin\Content\ckeditor\samples\toolbarconfigurator\font\LICENSE.txt" />

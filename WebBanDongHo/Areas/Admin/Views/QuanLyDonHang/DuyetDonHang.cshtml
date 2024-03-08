@@ -49,8 +49,8 @@
                             <td>@item.SanPham.TenSP</td>
                             <td>@item.SoLuong</td>
                             @{ decimal thanhtien = (decimal)(@item.DonGia * @item.SoLuong);}
-                            <td>@item.DonGia</td>
-                            <td>@thanhtien</td>
+                            <td>@item.DonGia.Value.ToString("#,##")</td>
+                            <td>@thanhtien.ToString("#,##")</td>
                         </tr>
                     }
                     <tr>
@@ -103,25 +103,25 @@
                                     <td>@item.SanPham.TenSP</td>
                                     <td>@item.SoLuong</td>
                                     @{ decimal thanhtien = (decimal)(@item.DonGia * @item.SoLuong);}
-                                    <td>@item.DonGia</td>
-                                    <td>@thanhtien</td>
+                                    <td>@item.DonGia.Value.ToString("#,##")</td>
+                                    <td>@thanhtien.ToString("#,##")</td>
                                 </tr>
                             }
                             <tr>
-                                <td align="right" colspan="4">Tổng số lượng: @Model.ChiTietDonDatHangs.Sum(n => n.SoLuong) sản phẩm</td>
+                                <td align="right" colspan="4"><strong>Tổng số lượng:</strong> @Model.ChiTietDonDatHangs.Sum(n => n.SoLuong) sản phẩm</td>
                             </tr>
                             @if (Model.UuDai > 0)
                             {
                                 <tr>
-                                    <td align="right" colspan="4">Tổng tiền:@Model.ChiTietDonDatHangs.Sum(n => n.ThanhTien).Value.ToString("#,##") đồng</td>
+                                    <td align="right" colspan="4"><strong>Thành tiền:</strong>@Model.ChiTietDonDatHangs.Sum(n => n.ThanhTien).Value.ToString("#,##") đồng</td>
                                 </tr>
                                 <tr>
-                                    <td align="right" colspan="4">Ưu đãi:@Model.UuDai %</td>
+                                    <td align="right" colspan="4"><strong>Ưu đãi:</strong>@Model.UuDai %</td>
                                 </tr>
                             }
 
                             <tr>
-                                <td align="right" colspan="4">Tổng tiền:@Model.TongThanhToan.Value.ToString("#,##") đồng</td>
+                                <td align="right" colspan="4"><strong>Tổng tiền:</strong>@Model.TongThanhToan.Value.ToString("#,##") đồng</td>
                             </tr>
                         </table>
                     </div>

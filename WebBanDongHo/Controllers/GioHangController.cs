@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
@@ -192,25 +193,65 @@ namespace WebBanDongHo.Controllers
                 db.ChiTietDonDatHangs.Add(cTDDH);
             }
             db.SaveChanges();
+            
+            // thuc hien chuc nang sendMail cho khach hang 
+            // duyet don hang len form
+            var strSanPham = "";
+            foreach(var sp in list)
+            {
+                strSanPham += "<tr>";
+                strSanPham += "<td>"+sp.TenSP+"</td>";
+                strSanPham += "<td>"+sp.SoLuong+"</td>";
+                strSanPham += "<td>" + sp.DonGia + "</td>";
+                strSanPham += "<tr>";
+
+                
+            }
+
+            //string contentCustumer = Server.MapPath("~/Content/ckeditor/samples/send2.html");
+            string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/ckeditor/samples/send2.html"));
+            contentCustomer = contentCustomer.Replace("{{MaDon}}", dDH.MaDDH.ToString());
+            contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
+            contentCustomer = contentCustomer.Replace("{{NgayDat}}", dDH.NgayDat.ToString());
+            contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", dDH.KhachHang.TenKH); 
+            contentCustomer = contentCustomer.Replace("{{Phone}}", dDH.KhachHang.SoDienThoai);
+            contentCustomer = contentCustomer.Replace("{{Email}}", dDH.KhachHang.Email);
+            contentCustomer = contentCustomer.Replace("{{DiaChiGiaoHang}}", dDH.KhachHang.DiaChi);
+            contentCustomer = contentCustomer.Replace("{{TongTien}}", dDH.TongThanhToan.Value.ToString("#,##"));
+            GuiEmail("Xác nhận đơn hàng của hệ thống", KH.Email, "avanh090@gmail.com", "jhvpedzqhrnyamsr", contentCustomer);
             Session["gioHang"] = null;
-            //GuiEmail("Xác nhận đơn hàng của hệ thống", KH.Email, "hoanganhnguyenkfe99@gmail.com", "Anhhoang@123", "Đơn hàng của bạn đang được xử lý!");
             return RedirectToAction("HienThiGioHang");
         }
-        /*public void GuiEmail(string title, string toEmail, string fromEmail, string passWord, string content)
+        
+
+        public void GuiEmail(string title, string toEmail, string fromEmail, string passWord, string content)
         {
-            //Gọi Email
-            MailMessage mail = new MailMessage();
-            mail.To.Add(toEmail); //Địa chỉ nhận
-            mail.From = new MailAddress(toEmail); //Địa chỉ gửi
-            mail.Subject = title; //Tiêu đề gửi
-            mail.Body = content; //Nội dung
-            mail.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";//Host gửi của Gmail
-            smtp.Port = 587;
-            smtp.Credentials = new System.Net.NetworkCredential(fromEmail, passWord);//Tài khoản và mật khẩu người gửi
-            smtp.EnableSsl = true;//Kích hoạt giao tiếp an toàn SSL
-            smtp.Send(mail);//Gửi email
-        }*/
+            try
+            {
+                // Tạo đối tượng MailMessage
+                MailMessage mail = new MailMessage();
+                mail.To.Add(toEmail); // Địa chỉ nhận
+                mail.From = new MailAddress(fromEmail); // Địa chỉ gửi
+                mail.Subject = title; // Tiêu đề gửi
+                mail.Body = content; // Nội dung
+                mail.IsBodyHtml = true;
+
+                // Cấu hình thông tin SMTP
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com"; // Host gửi của Gmail
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(fromEmail, passWord); // Tài khoản và mật khẩu người gửi
+                smtp.EnableSsl = true; // Kích hoạt giao tiếp an toàn SSL
+
+                // Gửi email
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
     }
 }

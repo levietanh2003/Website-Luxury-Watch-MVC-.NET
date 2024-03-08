@@ -114,7 +114,7 @@ namespace WebBanDongHo.Areas.Admin.Controllers
             ViewBag.email = email;
             if (dDH.TinhTrangGiaoHang == true && dDH.HoanThanh == false && dDH.DaHuy == false)
             {
-                GuiEmail("Xác nhận đơn hàng của hệ thống", ddhkh.KhachHang.Email, "hoanganhnguyenkfe99@gmail.com", "Anhhoang@123", "Đơn hàng của bạn sẽ được giao và ngày: " + dDHUpdate.NgayGiao.Value.ToString("dd/MM/yyyy") + email);
+                GuiEmail("Xác nhận đơn hàng của hệ thống", ddhkh.KhachHang.Email, "avanh090@gmail.com", "01082003md.", "Đơn hàng của bạn sẽ được giao và ngày: " + dDHUpdate.NgayGiao.Value.ToString("dd/MM/yyyy") + email);
                 return RedirectToAction("DonHangDangXuLy");
             }
             else if(dDH.HoanThanh == true)
